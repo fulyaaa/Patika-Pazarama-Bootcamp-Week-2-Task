@@ -21,7 +21,7 @@ Uygulama silinir veya kapatılırsa onStop() metodu devreye girer. Kullanıcı u
 ###  onDestroy(): 
 Bir activity yok edilmeden önce sistem bu metodu çağırır. Böylelikle yerden tasarruf edilerek aktivite yok edilir.
 
-## Ne gibi problemler olur ve nasıl kaçarız?
+## Ne gibi problemler olur ve nasıl kaçarız?  
 Bileşenlerin doğru kullanılmaması, sistemin önemli işler yaparken uygulamanın sürecini öldürmesine neden olabilir. Örnek verecek olursak; uygulamayı açtığımızda  onCreate(), onStart(), onResume() metotları çalışır. Fakat screen rotate işleminden sonra  şu metotları tetiklenir; onPause(), OnStop(), onDestroyed(). Ardından destroy içerisinde silinen datalar onCreate içerisinde tekrar yüklenir. onCreate(), onStart(), onResume() tetiklenir. Bu istenmeyen bir dönüştür. Bunu engellemek için, onSaveInstanceState metodu ile veriyi kaydedip, onRestoreInstanceState metodu ile kaydettiği veriyi geri getiriyor.Boylece ikinci kez onCreate metodu çalıştığında kaydettiği veriyi getirmiş olur.Diğer yöntem olarak Android manifeste ekleyeceğimiz android:configChanges="orientation|keyboardHidden|screenSize” ile bu durumdan kaçınabiliriz. Bu eklenti aktivitenin yeniden oluşturulmasını engeller ve veri kaybının önüne geçer.
 
 
